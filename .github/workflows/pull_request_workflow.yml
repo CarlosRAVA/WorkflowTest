@@ -1,0 +1,27 @@
+name: Mi primer pull request
+on:
+  pull_request: 
+    types: [opened, synchronize, reopened, closed]
+
+jobs: 
+  Tarea1:
+    runs-on: ubuntu-22.04
+
+    steps: 
+      - name: Datos del push
+        run:  |
+          echo "Autor: ${{ github.event.pull_request.user.login }}"
+          echo "Mensaje del último commit: ${{ github.event.pull_request.title }}"
+          echo "ID del commit: ${{ github.event.pull_request.head.sha }}"
+          echo "URL del commit/PR: ${{ github.event.pull_request.html_url }}"
+          echo "Rama origen: ${{ github.event.pull_request.head.ref }}"
+          echo "Repositorio: ${{ github.repository }}"
+          
+      - name: Datos del pull request
+        run:  |
+          echo "Datos origen (Branch/Repo): ${{ github.event.pull_request.head.label }}"
+          echo "Datos destino (Base branch): ${{ github.event.pull_request.base.label }}"
+          echo "Título: ${{ github.event.pull_request.title }}"
+          echo "Contenido: ${{ github.event.pull_request.body }}"
+          echo "Estado: ${{ github.event.pull_request.state }}"
+          echo "Fusion: ${{ github.event.pull_request.merged }}"
